@@ -1,0 +1,12 @@
+---
+- name: mozilla-nss | {{ task.name }} | Ensure all packages are installed and updated
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  loop: '{{ packages }}'
+
+# TODO:
+# coverity
+# rr
+...

@@ -1,0 +1,25 @@
+galaxy_info:
+  author: Marcus Burghardt
+  description: Role for prepare an entire development environment for NSS.
+  company: Mozilla (not official)
+  license: MPL
+  min_ansible_version: 2.4
+  min_ansible_container_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - nss
+    - mozilla
+    - development
+dependencies: []

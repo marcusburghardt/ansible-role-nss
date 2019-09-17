@@ -1,0 +1,40 @@
+---
+# This file has the custom configurations for:
+# redhat/centos/fedora
+
+packages:
+  - clang
+  - clang-analyzer
+  - docker
+  - gcc-c++
+  - git
+  - glibc
+  - glibc-devel
+  - glibc-devel.i686
+  - gyp
+  - libasan
+  - liblsan
+  - libstdc++
+  - libstdc++-devel
+  - libtsan
+  - libubsan
+  - ltrace
+  - make
+  - mercurial
+  - ninja-build
+  - php
+  - php-json
+  - strace
+  - zlib
+  - zlib-devel
+
+user_env_file: "{{ ansible_facts['user_dir'] }}/.bash_profile"
+user_mercurial_file: "{{ ansible_facts['user_dir'] }}/.hgrc"
+repo_mercurial_config_file: ".hg/hgrc"
+repo_mercurial_requires_file: ".hg/requires"
+user_git_file: "{{ ansible_facts['user_dir'] }}/.gitconfig"
+
+# TODO: Find this file automatically
+vscode_workspace_config_file: "{{ ansible_facts['user_dir'] }}/.config/Code/Workspaces/1558383680647/workspace.json"
+ansible_python_interpreter: /usr/bin/python3
+...
