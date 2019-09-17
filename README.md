@@ -1,4 +1,4 @@
-Role Name
+ansible-role-nss
 =========
 
 This role will prepare a development environment for NSS.
