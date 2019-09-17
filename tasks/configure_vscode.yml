@@ -24,7 +24,6 @@
   when:
     - ansible_facts['system']|lower == "linux"
     - result_repo_vscode is success
-    - result_repo_vscode is skipped
 
 - name: mozilla-nss | {{ task.name }} | Ensure Bugzilla workspace folders in FileSystem
   file:
