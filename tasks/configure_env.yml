@@ -43,6 +43,7 @@
     purge: yes
     clone: yes
     update: yes
+    revision: 'tip'
   loop: '{{ hg_repos }}'
   register: result_hg
   when:
@@ -55,6 +56,7 @@
     dest: '{{ item.dest }}'
     clone: yes
     update: yes
+    version: 'HEAD'
   loop: '{{ git_repos }}'
   register: result_git
   when:
@@ -85,8 +87,8 @@
     state: present
     backrefs: yes
     backup: yes
-    regexp: 'export PATH=(["]*)((?!.*?{{item.path}}).*?)(["]*)$'
-    line: 'export PATH=\1\2:{{item.path}}\3'
+    regexp: 'export PATH=(["]*)((?!.*?{{ item.path }}).*?)(["]*)$'
+    line: 'export PATH=\1\2:{{ item.path }}\3'
   loop: '{{ path_env }}'
   register: result_path_env_set
   when:

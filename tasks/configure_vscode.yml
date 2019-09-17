@@ -19,9 +19,9 @@
   become: yes
   package:
     name: 'code'
-    state: latest
+    state: present
   register: result_install_vscode
-  when: 
+  when:
     - ansible_facts['system']|lower == "linux"
     - result_repo_vscode is success
     - result_repo_vscode is skipped
@@ -60,10 +60,11 @@
     purge: yes
     clone: yes
     update: yes
+    revision: 'tip'
   loop: '{{ hg_repos | product(vscode_workspaces)|list }}'
   register: result_workspaces_hg
   when:
-    - item[0].support_repo == False
+    - not item[0].support_repo
     - item[1].enabled
     - item[1].path == bugzilla_dev_dir
     - result_workspaces_dir is success
@@ -78,7 +79,7 @@
   loop: "{{ hg_requires | product(hg_repos,vscode_workspaces)|list }}"
   when:
     - item[0].enabled
-    - item[1].support_repo == False
+    - not item[1].support_repo
     - result_workspaces_hg is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure Try-Server path for each Bugzilla workspace
@@ -91,7 +92,7 @@
     line: 'nss-try = {{ nss_try }}'
   loop: '{{ hg_repos | product(vscode_workspaces)|list }}'
   when:
-    - item[0].support_repo == False
+    - not item[0].support_repo
     - item[1].path == bugzilla_dev_dir
     - result_workspaces_hg is success
 
@@ -105,7 +106,7 @@
     line: '{{ item[2].parameter }} = {{ item[2].value }}'
   loop: '{{ hg_repos | product(vscode_workspaces,hg_extensions)|list }}'
   when:
-    - item[0].support_repo == False
+    - not item[0].support_repo
     - item[1].path == bugzilla_dev_dir
     - item[2].enabled
     - result_workspaces_hg is success
@@ -148,7 +149,7 @@
     - item.enabled
     - item.path == main_dir
     - result_main_dir is success
-  
+
 - name: mozilla-nss | {{ task.name }} | Ensure the desired extensions are installed in VSCode
   command:
     argv:
@@ -173,5 +174,5 @@
   register: result_vscode_extensions_remove
   when:
     - item.enabled
-    - item.installed == False
+    - not item.installed
 ...

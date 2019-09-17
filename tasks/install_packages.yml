@@ -3,7 +3,7 @@
   become: yes
   package:
     name: "{{ item }}"
-    state: latest
+    state: present
   loop: '{{ packages }}'
 
 # TODO:
