@@ -104,11 +104,11 @@ Requirements
 - Internet Access to sync repositories.
 
 We will prepare the technical environment, but you have to create your credentials:
-1 - Bugzilla - https://bugzilla.mozilla.org/
+- 1 - Bugzilla - https://bugzilla.mozilla.org/
 	- To colaborate with bugs.
-2 - Phabricator - https://phabricator.services.mozilla.com/ 
+- 2 - Phabricator - https://phabricator.services.mozilla.com/ 
 	- To send and review patches.
-3 - Optional Permissions:
+- 3 - Optional Permissions:
 	- To edit bugs.
 	- To push to try-servers.
 
@@ -172,7 +172,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 Author Information
 ------------------
 
-Marcus Burghardt - marcus.apb@gmail.com
-@MBSEC - marcus@mbsec.com.br
-@MOZILLA - mburghardt@mozilla.com
-https://www.linkedin.com/in/marcusburghardt/
+- Marcus Burghardt - marcus.apb@gmail.com
+- @MBSEC - marcus@mbsec.com.br
+- @MOZILLA - mburghardt@mozilla.com
+- https://www.linkedin.com/in/marcusburghardt/
