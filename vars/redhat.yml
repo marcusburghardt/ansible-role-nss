@@ -2,6 +2,7 @@
 # This file has the custom configurations for:
 # redhat/centos/fedora
 
+ansible_python_interpreter: /usr/bin/python3
 packages:
   - clang
   - clang-analyzer
@@ -29,12 +30,11 @@ packages:
   - zlib-devel
 
 user_env_file: "{{ ansible_facts['user_dir'] }}/.bash_profile"
+user_git_file: "{{ ansible_facts['user_dir'] }}/.gitconfig"
 user_mercurial_file: "{{ ansible_facts['user_dir'] }}/.hgrc"
 repo_mercurial_config_file: ".hg/hgrc"
 repo_mercurial_requires_file: ".hg/requires"
-user_git_file: "{{ ansible_facts['user_dir'] }}/.gitconfig"
 
-# TODO: Find this file automatically
-vscode_workspace_config_file: "{{ ansible_facts['user_dir'] }}/.config/Code/Workspaces/1558383680647/workspace.json"
-ansible_python_interpreter: /usr/bin/python3
+vscode_workspaces_folder: "{{ ansible_facts['user_dir'] }}/.config/Code/Workspaces"
+vscode_workspaces_config_file: "workspace.json"
 ...

@@ -111,6 +111,22 @@
     - result_workspaces_hg is success
     - ansible_facts['distribution']|lower == "fedora"
 
+- name: mozilla-nss | {{ task.name }} | Ensure the workspaces folder for VSCode
+  file:
+    path: '{{ vscode_workspaces_folder }}'
+    state: directory
+    mode: '0755'
+  register: result_vscode_workspaces_folder
+  when: result_install_vscode is success
+
+- name: mozilla-nss | {{ task.name }} | Locate the {{ vscode_workspaces_config_file }} file of VSCode
+  find:
+    paths: '{{ vscode_workspaces_folder }}'
+    recurse: yes
+    patterns: '{{ vscode_workspaces_config_file }}'
+  register: result_vscode_workspaces_file
+  when: result_vscode_workspaces_folder is success
+
 - name: mozilla-nss | {{ task.name }} | Ensure desired Bugzilla workspaces are set in VSCode
   command:
     chdir: '{{ role_path }}/files'
@@ -118,7 +134,7 @@
       - '{{ ansible_python_interpreter }}'
       - vscode_settings.py
       - '{{ item.action }}'
-      - '{{ vscode_workspace_config_file }}'
+      - '{{ result_vscode_workspaces_file.files[0].path }}'
       - 'folders'
       - 'path'
       - '{{ item.path }}/{{ dev_ws_prefix }}{{ item.bugId }}_{{ item.name }}'
@@ -128,6 +144,7 @@
   when:
     - item.enabled
     - item.path == bugzilla_dev_dir
+    - result_vscode_workspaces_file is success
     - result_workspaces_dir is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure the Reference/Main workspace folder is set in VSCode
@@ -137,7 +154,7 @@
       - '{{ ansible_python_interpreter }}'
       - vscode_settings.py
       - '{{ item.action }}'
-      - '{{ vscode_workspace_config_file }}'
+      - '{{ result_vscode_workspaces_file.files[0].path }}'
       - 'folders'
       - 'path'
       - '{{ item.path }}'
@@ -147,6 +164,7 @@
   when:
     - item.enabled
     - item.path == main_dir
+    - result_vscode_workspaces_file is success
     - result_main_dir is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure the desired extensions are installed in VSCode
