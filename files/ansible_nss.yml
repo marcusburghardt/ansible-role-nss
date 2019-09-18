@@ -6,4 +6,4 @@
     - git_email: 'myemail@mydomain.com'
     - nss_try: 'ssh://myemail@mydomain.com@hg.mozilla.org/projects/nss-try'
   roles:
-    - ansible-role-nss 
+    - marcusburghardt.ansible_role_nss 
