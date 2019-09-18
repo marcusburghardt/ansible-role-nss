@@ -49,10 +49,10 @@ moz_phab_file: 'https://raw.githubusercontent.com/mozilla-conduit/review/master/
 # sudo permissions to install packages and change some system files (repos).
 # Then, you can call the ansible-playbook command with the -K option.
 available_tasks:
-  - { enabled: False, name: 'install_packages' }                # Requires -K option
+  - { enabled: True, name: 'install_packages' }                # Requires -K option
   - { enabled: True,  name: 'configure_env' }
-  - { enabled: False, name: 'configure_mercurial' }
-  - { enabled: False, name: 'configure_git' }
+  - { enabled: True, name: 'configure_mercurial' }
+  - { enabled: True, name: 'configure_git' }
   # Requires -K option if "install" is True
   # Depends of "configure_env"
   - { enabled: True,  name: 'configure_vscode' }
@@ -61,10 +61,10 @@ available_tasks:
 # increased.
 # "support_repo" usually are not modified. We will just ensure they are updated.
 hg_repos:
-  - { enabled: False, support_repo: False,  name: 'nspr',                   repo: 'https://hg.mozilla.org/projects/nspr',                   dest: '{{ main_dir }}/nspr' }
-  - { enabled: False, support_repo: False,  name: 'nss',                    repo: 'https://hg.mozilla.org/projects/nss',                    dest: '{{ main_dir }}/nss' }
-  - { enabled: False, support_repo: True,   name: 'evolve',                 repo: 'https://www.mercurial-scm.org/repo/evolve',              dest: '{{ mozbuild_dir }}/evolve' }
-  - { enabled: False, support_repo: True,   name: 'version-control-tools',  repo: 'https://hg.mozilla.org/hgcustom/version-control-tools',  dest: '{{ mozbuild_dir }}/version-control-tools' }
+  - { enabled: True, support_repo: False,  name: 'nspr',                   repo: 'https://hg.mozilla.org/projects/nspr',                   dest: '{{ main_dir }}/nspr' }
+  - { enabled: True, support_repo: False,  name: 'nss',                    repo: 'https://hg.mozilla.org/projects/nss',                    dest: '{{ main_dir }}/nss' }
+  - { enabled: True, support_repo: True,   name: 'evolve',                 repo: 'https://www.mercurial-scm.org/repo/evolve',              dest: '{{ mozbuild_dir }}/evolve' }
+  - { enabled: True, support_repo: True,   name: 'version-control-tools',  repo: 'https://hg.mozilla.org/hgcustom/version-control-tools',  dest: '{{ mozbuild_dir }}/version-control-tools' }
 
 # Here are the ui options considered very useful to work with development.
 hg_ui_config:
@@ -92,9 +92,9 @@ hg_requires:
 
 # These repos are very important to work with NSS and Phabricator.
 git_repos:
-  - { enabled: False, name: 'nss-tools',  repo: 'https://github.com/mozilla/nss-tools.git',   dest: '{{ main_dir }}/nss-tools' }
-  - { enabled: False, name: 'arcanist',   repo: 'https://github.com/phacility/arcanist.git',  dest: '{{ mozbuild_dir }}/arcanist' }
-  - { enabled: False, name: 'libphutil',  repo: 'https://github.com/phacility/libphutil.git', dest: '{{ mozbuild_dir }}/libputil' }
+  - { enabled: True, name: 'nss-tools',  repo: 'https://github.com/mozilla/nss-tools.git',   dest: '{{ main_dir }}/nss-tools' }
+  - { enabled: True, name: 'arcanist',   repo: 'https://github.com/phacility/arcanist.git',  dest: '{{ mozbuild_dir }}/arcanist' }
+  - { enabled: True, name: 'libphutil',  repo: 'https://github.com/phacility/libphutil.git', dest: '{{ mozbuild_dir }}/libputil' }
 
 git_user_config:
   - { enabled: True,  state: 'present', parameter: 'name',  value: '{{ git_username }}' }
