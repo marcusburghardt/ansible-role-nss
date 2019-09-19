@@ -127,6 +127,13 @@
   register: result_vscode_workspaces_file
   when: result_vscode_workspaces_folder is success
 
+- name: mozilla-nss | {{ task.name }} | First execution of VSCode
+  debug:
+    msg:
+      - "If VSCode was just installed, is necessary to open it for create the initial configurations."
+      - "Also, add some folder in your VSCode workspace to create the workspaces configurations file."
+  when: result_vscode_workspaces_file.matched == '0'
+
 - name: mozilla-nss | {{ task.name }} | Ensure desired Bugzilla workspaces are set in VSCode
   command:
     chdir: '{{ role_path }}/files'
@@ -144,7 +151,7 @@
   when:
     - item.enabled
     - item.path == bugzilla_dev_dir
-    - result_vscode_workspaces_file.matched == "1"
+    - result_vscode_workspaces_file.matched == '1'
     - result_workspaces_dir is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure the Reference/Main workspace folder is set in VSCode
@@ -164,7 +171,7 @@
   when:
     - item.enabled
     - item.path == main_dir
-    - result_vscode_workspaces_file.matched == "1"
+    - result_vscode_workspaces_file.matched == '1'
     - result_main_dir is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure the desired extensions are installed in VSCode

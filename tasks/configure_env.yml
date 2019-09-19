@@ -95,6 +95,17 @@
     - item.enabled
     - result_path_env_ensure is success or result_path_env_ensure is skipped
 
+- name: mozilla-nss | {{ task.name }} | Ensure the kernel configurations with Sysctl
+  become: yes
+  sysctl:
+    name: '{{ item.parameter }}'
+    value: '{{ item.value }}'
+    state: '{{ item.state }}'
+    reload: yes
+  loop: '{{ sysctl_config }}'
+  register: result_sysctl_watches
+  when: item.enabled
+
 - name: mozilla-nss | {{ task.name }} | Build NSS in main working directory
   command:
     chdir: '{{ main_dir }}/{{ item.name }}'

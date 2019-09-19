@@ -144,6 +144,9 @@ vscode_extensions:
   - { enabled: True,  installed: True,  name: 'adamvoss.vscode-languagetool-en' }
   - { enabled: True,  installed: True,  name: 'adamvoss.vscode-languagetool' }
 
+sysctl_config:
+  - { enabled: True,  state: 'present', parameter: 'fs.inotify.max_user_watches', value: '524288' }
+
 # As defined in nss/nss.gyp and nss/build.sh, some binaries are not compiled
 # by default. If you want to compile this extra binaries or build with any
 # other available option, here is the place to define this.
