@@ -144,7 +144,7 @@
   when:
     - item.enabled
     - item.path == bugzilla_dev_dir
-    - result_vscode_workspaces_file is success
+    - result_vscode_workspaces_file.matched == "1"
     - result_workspaces_dir is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure the Reference/Main workspace folder is set in VSCode
@@ -164,7 +164,7 @@
   when:
     - item.enabled
     - item.path == main_dir
-    - result_vscode_workspaces_file is success
+    - result_vscode_workspaces_file.matched == "1"
     - result_main_dir is success
 
 - name: mozilla-nss | {{ task.name }} | Ensure the desired extensions are installed in VSCode

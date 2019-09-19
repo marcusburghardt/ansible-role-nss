@@ -94,7 +94,7 @@ hg_requires:
 git_repos:
   - { enabled: True, name: 'nss-tools',  repo: 'https://github.com/mozilla/nss-tools.git',   dest: '{{ main_dir }}/nss-tools' }
   - { enabled: True, name: 'arcanist',   repo: 'https://github.com/phacility/arcanist.git',  dest: '{{ mozbuild_dir }}/arcanist' }
-  - { enabled: True, name: 'libphutil',  repo: 'https://github.com/phacility/libphutil.git', dest: '{{ mozbuild_dir }}/libputil' }
+  - { enabled: True, name: 'libphutil',  repo: 'https://github.com/phacility/libphutil.git', dest: '{{ mozbuild_dir }}/libphutil' }
 
 git_user_config:
   - { enabled: True,  state: 'present', parameter: 'name',  value: '{{ git_username }}' }
