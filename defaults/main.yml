@@ -49,8 +49,8 @@ moz_phab_file: 'https://raw.githubusercontent.com/mozilla-conduit/review/master/
 # sudo permissions to install packages and change some system files (repos).
 # Then, you can call the ansible-playbook command with the -K option.
 available_tasks:
-  - { enabled: True, name: 'install_packages' }                # Requires -K option
-  - { enabled: True,  name: 'configure_env' }
+  - { enabled: True, name: 'install_packages' }     # Requires -K option
+  - { enabled: True, name: 'configure_env' }        # Requires -K option
   - { enabled: True, name: 'configure_mercurial' }
   - { enabled: True, name: 'configure_git' }
   # Requires -K option if "install" is True
@@ -127,7 +127,7 @@ path_env:
 # to leave it "False" this meantime.
 vscode_workspaces:
   - { enabled: True,  state: 'directory', rebase: False,  action: 'add',    name: 'Reference',  bugId: '',        path: '{{ main_dir }}' }
-  - { enabled: True,  state: 'directory', rebase: True,   action: 'remove', name: 'GTest',      bugId: '1577624', path: '{{ bugzilla_dev_dir }}' }
+  - { enabled: False, state: 'directory', rebase: True,   action: 'remove', name: 'GTest',      bugId: '1577624', path: '{{ bugzilla_dev_dir }}' }
 
 # This will be prefixed in the new Bugzilla dev workspaces configured in VSCode
 dev_ws_prefix: 'BUG'
