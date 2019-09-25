@@ -49,6 +49,7 @@
   register: result_workspaces_notes
   when:
     - item.enabled
+    - item.state == "directory"
     - item.path == bugzilla_dev_dir
     - result_workspaces_dir is success
 
