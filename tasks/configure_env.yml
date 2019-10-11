@@ -43,7 +43,7 @@
     purge: yes
     clone: yes
     update: yes
-    revision: 'tip'
+    revision: "default"
   loop: '{{ hg_repos }}'
   register: result_hg
   when:
