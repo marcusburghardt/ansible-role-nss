@@ -63,6 +63,7 @@
     revision: 'tip'
   loop: '{{ hg_repos | product(vscode_workspaces)|list }}'
   register: result_workspaces_hg
+  ignore_errors: yes
   when:
     - not item[0].support_repo
     - item[1].enabled
