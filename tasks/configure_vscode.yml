@@ -67,6 +67,7 @@
   when:
     - not item[0].support_repo
     - item[1].enabled
+    - item[1].state == "directory"
     - item[1].path == bugzilla_dev_dir
     - result_workspaces_dir is success
 
