@@ -60,7 +60,7 @@
     purge: yes
     clone: yes
     update: yes
-    revision: 'tip'
+    revision: "default"
   loop: '{{ hg_repos | product(vscode_workspaces)|list }}'
   register: result_workspaces_hg
   ignore_errors: yes
@@ -79,10 +79,11 @@
     backup: yes
     line: '{{ item[0].name }}'
   loop: "{{ hg_requires | product(hg_repos,vscode_workspaces)|list }}"
+  ignore_errors: yes
   when:
     - item[0].enabled
     - not item[1].support_repo
-    - result_workspaces_hg is success
+    - result_workspaces_hg is success or result_workspaces_hg is skipped
 
 - name: mozilla-nss | {{ task.name }} | Ensure Try-Server path for each Bugzilla workspace
   lineinfile:
@@ -93,10 +94,11 @@
     insertafter: '^\[paths\]'
     line: 'nss-try = {{ nss_try }}'
   loop: '{{ hg_repos | product(vscode_workspaces)|list }}'
+  ignore_errors: yes
   when:
     - not item[0].support_repo
     - item[1].path == bugzilla_dev_dir
-    - result_workspaces_hg is success
+    - result_workspaces_hg is success or result_workspaces_hg is skipped
 
 - name: mozilla-nss | {{ task.name }} | Ensure Mercurial extensions for each Bugzilla workspace
   lineinfile:
@@ -107,11 +109,12 @@
     backup: yes
     line: '{{ item[2].parameter }} = {{ item[2].value }}'
   loop: '{{ hg_repos | product(vscode_workspaces,hg_extensions)|list }}'
+  ignore_errors: yes
   when:
     - not item[0].support_repo
     - item[1].path == bugzilla_dev_dir
     - item[2].enabled
-    - result_workspaces_hg is success
+    - result_workspaces_hg is success or or result_workspaces_hg is skipped
     - ansible_facts['distribution']|lower == "fedora"
 
 - name: mozilla-nss | {{ task.name }} | Ensure the workspaces folder for VSCode
