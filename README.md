@@ -71,6 +71,7 @@ hg commit --amend -m "Bug <BugID> - Bug or commit description. r=reviewer1,revie
 - This example run only the gtests.
 - You can also call the all.sh, but this is very long to call all the time.
 - Explore the tests options and scripts. Every code should be tested!!
+- You can be more specific, like this: ../dist/Debug/bin/ssl_gtest -d . -w --gtest_filter"*TestName*"
 
 .nss/mach clang-format <modified file>
 - We have to check the clang-format before sent patches to Phabricator.
