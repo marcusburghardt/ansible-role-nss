@@ -82,6 +82,7 @@
   ignore_errors: yes
   when:
     - item[0].enabled
+    - item[0].state == "directory"
     - not item[1].support_repo
     - result_workspaces_hg is success or result_workspaces_hg is skipped
 
@@ -97,6 +98,7 @@
   ignore_errors: yes
   when:
     - not item[0].support_repo
+    - item[0].state == "directory"
     - item[1].path == bugzilla_dev_dir
     - result_workspaces_hg is success or result_workspaces_hg is skipped
 
@@ -112,6 +114,7 @@
   ignore_errors: yes
   when:
     - not item[0].support_repo
+    - item[0].state == "directory"
     - item[1].path == bugzilla_dev_dir
     - item[2].enabled
     - result_workspaces_hg is success or or result_workspaces_hg is skipped
@@ -156,6 +159,7 @@
   register: result_workspaces_bugzilla
   when:
     - item.enabled
+    - item.state == "directory"
     - item.path == bugzilla_dev_dir
     - result_vscode_workspaces_file.matched == 1
     - result_workspaces_dir is success
@@ -176,6 +180,7 @@
   register: result_workspaces_reference
   when:
     - item.enabled
+    - item.state == "directory"
     - item.path == main_dir
     - result_vscode_workspaces_file.matched == 1
     - result_main_dir is success
