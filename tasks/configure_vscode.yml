@@ -117,7 +117,7 @@
     - item[1].state == "directory"
     - item[1].path == bugzilla_dev_dir
     - item[2].enabled
-    - result_workspaces_hg is success or or result_workspaces_hg is skipped
+    - result_workspaces_hg is success or result_workspaces_hg is skipped
     - ansible_facts['distribution']|lower == "fedora"
 
 - name: mozilla-nss | {{ task.name }} | Ensure the workspaces folder for VSCode
