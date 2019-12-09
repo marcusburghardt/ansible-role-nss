@@ -175,5 +175,4 @@ Author Information
 
 - Marcus Burghardt - marcus.apb@gmail.com
 - @MBSEC - marcus@mbsec.com.br
-- @MOZILLA - mburghardt@mozilla.com
 - https://www.linkedin.com/in/marcusburghardt/
