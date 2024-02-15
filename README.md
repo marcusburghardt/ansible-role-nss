@@ -173,6 +173,6 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 Author Information
 ------------------
 
-- Marcus Burghardt - marcus.apb@gmail.com
-- @MBSEC - marcus@mbsec.com.br
+- Marcus Burghardt
+- https://github.com/marcusburghardt
 - https://www.linkedin.com/in/marcusburghardt/
